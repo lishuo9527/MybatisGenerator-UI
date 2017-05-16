@@ -1,0 +1,19 @@
+*.class
+
+# Package Files #
+# /META-INF/lib/*.jar
+# *.jar
+*.war
+*.ear
+*.jar
+*~
+.settings/
+.mvn
+.svn/
+target/
+.classpath
+.DS_Store
+.settings
+.idea/
+.project
+*.iml

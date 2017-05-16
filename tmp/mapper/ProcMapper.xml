@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.lishuo.dao.ProcMapper">
+  <resultMap id="BaseResultMap" type="me.lishuo.model.Proc">
+    <id column="db" jdbcType="CHAR" property="db" />
+    <id column="name" jdbcType="CHAR" property="name" />
+    <id column="type" jdbcType="CHAR" property="type" />
+    <result column="specific_name" jdbcType="CHAR" property="specific_name" />
+    <result column="language" jdbcType="CHAR" property="language" />
+    <result column="sql_data_access" jdbcType="CHAR" property="sql_data_access" />
+    <result column="is_deterministic" jdbcType="CHAR" property="is_deterministic" />
+    <result column="security_type" jdbcType="CHAR" property="security_type" />
+    <result column="definer" jdbcType="CHAR" property="definer" />
+    <result column="created" jdbcType="TIMESTAMP" property="created" />
+    <result column="modified" jdbcType="TIMESTAMP" property="modified" />
+    <result column="sql_mode" jdbcType="CHAR" property="sql_mode" />
+    <result column="character_set_client" jdbcType="CHAR" property="character_set_client" />
+    <result column="collation_connection" jdbcType="CHAR" property="collation_connection" />
+    <result column="db_collation" jdbcType="CHAR" property="db_collation" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="me.lishuo.model.ProcWithBLOBs">
+    <result column="param_list" jdbcType="LONGVARBINARY" property="param_list" />
+    <result column="returns" jdbcType="LONGVARBINARY" property="returns" />
+    <result column="body" jdbcType="LONGVARBINARY" property="body" />
+    <result column="comment" jdbcType="LONGVARCHAR" property="comment" />
+    <result column="body_utf8" jdbcType="LONGVARBINARY" property="body_utf8" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    db, name, type, specific_name, language, sql_data_access, is_deterministic, security_type, 
+    definer, created, modified, sql_mode, character_set_client, collation_connection, 
+    db_collation
+  </sql>
+  <sql id="Blob_Column_List">
+    param_list, returns, body, comment, body_utf8
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="me.lishuo.model.ProcKey" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from proc
+    where db = #{db,jdbcType=CHAR}
+      and name = #{name,jdbcType=CHAR}
+      and type = #{type,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="me.lishuo.model.ProcKey">
+    delete from proc
+    where db = #{db,jdbcType=CHAR}
+      and name = #{name,jdbcType=CHAR}
+      and type = #{type,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="me.lishuo.model.ProcWithBLOBs">
+    insert into proc (db, name, type, specific_name, 
+      language, sql_data_access, is_deterministic, 
+      security_type, definer, created, 
+      modified, sql_mode, character_set_client, 
+      collation_connection, db_collation, param_list, 
+      returns, body, comment, 
+      body_utf8)
+    values (#{db,jdbcType=CHAR}, #{name,jdbcType=CHAR}, #{type,jdbcType=CHAR}, #{specific_name,jdbcType=CHAR}, 
+      #{language,jdbcType=CHAR}, #{sql_data_access,jdbcType=CHAR}, #{is_deterministic,jdbcType=CHAR}, 
+      #{security_type,jdbcType=CHAR}, #{definer,jdbcType=CHAR}, #{created,jdbcType=TIMESTAMP}, 
+      #{modified,jdbcType=TIMESTAMP}, #{sql_mode,jdbcType=CHAR}, #{character_set_client,jdbcType=CHAR}, 
+      #{collation_connection,jdbcType=CHAR}, #{db_collation,jdbcType=CHAR}, #{param_list,jdbcType=LONGVARBINARY}, 
+      #{returns,jdbcType=LONGVARBINARY}, #{body,jdbcType=LONGVARBINARY}, #{comment,jdbcType=LONGVARCHAR}, 
+      #{body_utf8,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="me.lishuo.model.ProcWithBLOBs">
+    insert into proc
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="db != null">
+        db,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="specific_name != null">
+        specific_name,
+      </if>
+      <if test="language != null">
+        language,
+      </if>
+      <if test="sql_data_access != null">
+        sql_data_access,
+      </if>
+      <if test="is_deterministic != null">
+        is_deterministic,
+      </if>
+      <if test="security_type != null">
+        security_type,
+      </if>
+      <if test="definer != null">
+        definer,
+      </if>
+      <if test="created != null">
+        created,
+      </if>
+      <if test="modified != null">
+        modified,
+      </if>
+      <if test="sql_mode != null">
+        sql_mode,
+      </if>
+      <if test="character_set_client != null">
+        character_set_client,
+      </if>
+      <if test="collation_connection != null">
+        collation_connection,
+      </if>
+      <if test="db_collation != null">
+        db_collation,
+      </if>
+      <if test="param_list != null">
+        param_list,
+      </if>
+      <if test="returns != null">
+        returns,
+      </if>
+      <if test="body != null">
+        body,
+      </if>
+      <if test="comment != null">
+        comment,
+      </if>
+      <if test="body_utf8 != null">
+        body_utf8,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="db != null">
+        #{db,jdbcType=CHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="specific_name != null">
+        #{specific_name,jdbcType=CHAR},
+      </if>
+      <if test="language != null">
+        #{language,jdbcType=CHAR},
+      </if>
+      <if test="sql_data_access != null">
+        #{sql_data_access,jdbcType=CHAR},
+      </if>
+      <if test="is_deterministic != null">
+        #{is_deterministic,jdbcType=CHAR},
+      </if>
+      <if test="security_type != null">
+        #{security_type,jdbcType=CHAR},
+      </if>
+      <if test="definer != null">
+        #{definer,jdbcType=CHAR},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modified != null">
+        #{modified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sql_mode != null">
+        #{sql_mode,jdbcType=CHAR},
+      </if>
+      <if test="character_set_client != null">
+        #{character_set_client,jdbcType=CHAR},
+      </if>
+      <if test="collation_connection != null">
+        #{collation_connection,jdbcType=CHAR},
+      </if>
+      <if test="db_collation != null">
+        #{db_collation,jdbcType=CHAR},
+      </if>
+      <if test="param_list != null">
+        #{param_list,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="returns != null">
+        #{returns,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="body != null">
+        #{body,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="body_utf8 != null">
+        #{body_utf8,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="me.lishuo.model.ProcWithBLOBs">
+    update proc
+    <set>
+      <if test="specific_name != null">
+        specific_name = #{specific_name,jdbcType=CHAR},
+      </if>
+      <if test="language != null">
+        language = #{language,jdbcType=CHAR},
+      </if>
+      <if test="sql_data_access != null">
+        sql_data_access = #{sql_data_access,jdbcType=CHAR},
+      </if>
+      <if test="is_deterministic != null">
+        is_deterministic = #{is_deterministic,jdbcType=CHAR},
+      </if>
+      <if test="security_type != null">
+        security_type = #{security_type,jdbcType=CHAR},
+      </if>
+      <if test="definer != null">
+        definer = #{definer,jdbcType=CHAR},
+      </if>
+      <if test="created != null">
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modified != null">
+        modified = #{modified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sql_mode != null">
+        sql_mode = #{sql_mode,jdbcType=CHAR},
+      </if>
+      <if test="character_set_client != null">
+        character_set_client = #{character_set_client,jdbcType=CHAR},
+      </if>
+      <if test="collation_connection != null">
+        collation_connection = #{collation_connection,jdbcType=CHAR},
+      </if>
+      <if test="db_collation != null">
+        db_collation = #{db_collation,jdbcType=CHAR},
+      </if>
+      <if test="param_list != null">
+        param_list = #{param_list,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="returns != null">
+        returns = #{returns,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="body != null">
+        body = #{body,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="comment != null">
+        comment = #{comment,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="body_utf8 != null">
+        body_utf8 = #{body_utf8,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where db = #{db,jdbcType=CHAR}
+      and name = #{name,jdbcType=CHAR}
+      and type = #{type,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="me.lishuo.model.ProcWithBLOBs">
+    update proc
+    set specific_name = #{specific_name,jdbcType=CHAR},
+      language = #{language,jdbcType=CHAR},
+      sql_data_access = #{sql_data_access,jdbcType=CHAR},
+      is_deterministic = #{is_deterministic,jdbcType=CHAR},
+      security_type = #{security_type,jdbcType=CHAR},
+      definer = #{definer,jdbcType=CHAR},
+      created = #{created,jdbcType=TIMESTAMP},
+      modified = #{modified,jdbcType=TIMESTAMP},
+      sql_mode = #{sql_mode,jdbcType=CHAR},
+      character_set_client = #{character_set_client,jdbcType=CHAR},
+      collation_connection = #{collation_connection,jdbcType=CHAR},
+      db_collation = #{db_collation,jdbcType=CHAR},
+      param_list = #{param_list,jdbcType=LONGVARBINARY},
+      returns = #{returns,jdbcType=LONGVARBINARY},
+      body = #{body,jdbcType=LONGVARBINARY},
+      comment = #{comment,jdbcType=LONGVARCHAR},
+      body_utf8 = #{body_utf8,jdbcType=LONGVARBINARY}
+    where db = #{db,jdbcType=CHAR}
+      and name = #{name,jdbcType=CHAR}
+      and type = #{type,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="me.lishuo.model.Proc">
+    update proc
+    set specific_name = #{specific_name,jdbcType=CHAR},
+      language = #{language,jdbcType=CHAR},
+      sql_data_access = #{sql_data_access,jdbcType=CHAR},
+      is_deterministic = #{is_deterministic,jdbcType=CHAR},
+      security_type = #{security_type,jdbcType=CHAR},
+      definer = #{definer,jdbcType=CHAR},
+      created = #{created,jdbcType=TIMESTAMP},
+      modified = #{modified,jdbcType=TIMESTAMP},
+      sql_mode = #{sql_mode,jdbcType=CHAR},
+      character_set_client = #{character_set_client,jdbcType=CHAR},
+      collation_connection = #{collation_connection,jdbcType=CHAR},
+      db_collation = #{db_collation,jdbcType=CHAR}
+    where db = #{db,jdbcType=CHAR}
+      and name = #{name,jdbcType=CHAR}
+      and type = #{type,jdbcType=CHAR}
+  </update>
+</mapper>
