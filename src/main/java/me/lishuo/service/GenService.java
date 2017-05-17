@@ -50,10 +50,9 @@ public class GenService {
                 dirFile.mkdirs();
             }
 
-            String config_path = "src/main/resources/Configuration.xml";
-            File configFile = new File(config_path);
+            File conf = new File(System.getProperty("user.dir") + "/conf/Configuration.xml");
             ConfigurationParser parser = new ConfigurationParser(warnings);
-            Configuration config = parser.parseConfiguration(configFile);
+            Configuration config = parser.parseConfiguration(conf);
             Context context = config.getContexts().get(0);
 
             // db

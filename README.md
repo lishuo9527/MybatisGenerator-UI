@@ -23,7 +23,7 @@ git clone https://github.com/lishuo9527/MybatisGenerator-UI.git
 
 
 ```
-cd MybatisGenerator
+cd MybatisGenerator/
 mvn clean package
 ```
 
@@ -31,6 +31,7 @@ mvn clean package
 * Run it from the command line with a command like this:
 
 ```
+cd target/
 nohup java -server -Xms128m -Xmx128m -jar MybatisGenerator-1.0.0-SNAPSHOT.jar  >out.log 2>&1 &
 ```
 

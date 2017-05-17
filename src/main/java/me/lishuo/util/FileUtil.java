@@ -1,5 +1,7 @@
 package me.lishuo.util;
 
+import org.springframework.util.ResourceUtils;
+
 import java.io.*;
 import java.util.zip.CRC32;
 import java.util.zip.CheckedOutputStream;
@@ -102,7 +104,4 @@ public class FileUtil {
         return dir.delete();
     }
 
-    public static void main(String[] args) {
-        System.out.println(deleteDir(new File(System.getProperty("user.dir") + "/tmp")));
-    }
 }
