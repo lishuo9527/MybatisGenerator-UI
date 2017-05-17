@@ -4,11 +4,15 @@ import me.lishuo.util.FileUtil;
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.*;
 import org.mybatis.generator.config.xml.ConfigurationParser;
+import org.mybatis.generator.exception.InvalidConfigurationException;
+import org.mybatis.generator.exception.XMLParserException;
 import org.mybatis.generator.internal.DefaultShellCallback;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,12 +95,23 @@ public class GenService {
             MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
             myBatisGenerator.generate(null);
 
-            FileUtil.compress("tmp", System.getProperty("user.dir") + "/result/mbg.zip");
-        } catch (Exception e) {
+            FileUtil.compress("mbg", System.getProperty("user.dir") + "/result/", "mbg.zip");
+        } catch (SQLException e) {
             e.printStackTrace();
             return "01";
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+            return "02";
+        } catch (InterruptedException ite) {
+            ite.printStackTrace();
+            return "03";
+        } catch (InvalidConfigurationException ice) {
+            ice.printStackTrace();
+            return "04";
+        } catch (XMLParserException xmle) {
+            xmle.printStackTrace();
+            return "05";
         }
-
         return "00";
     }
 

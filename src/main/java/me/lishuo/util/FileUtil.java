@@ -13,13 +13,17 @@ public class FileUtil {
 
     static final int BUFFER = 8192;
 
-    public static void compress(String srcPath, String dstPath) throws IOException {
+    public static void compress(String srcPath, String dstPath, String fileName) throws IOException {
         File srcFile = new File(srcPath);
-        File dstFile = new File(dstPath);
+        File dst = new File(dstPath);
+        File dstFile = new File(dstPath + fileName);
         if (!srcFile.exists()) {
             throw new FileNotFoundException(srcPath + "不存在！");
         }
 
+        if (!dst.exists()) {
+            dst.mkdir();
+        }
         FileOutputStream out = null;
         ZipOutputStream zipOut = null;
         try {
@@ -88,7 +92,7 @@ public class FileUtil {
     public static boolean deleteDir(File dir) {
         if (dir.isDirectory()) {
             String[] children = dir.list();
-            for (int i=0; i<children.length; i++) {
+            for (int i = 0; i < children.length; i++) {
                 boolean success = deleteDir(new File(dir, children[i]));
                 if (!success) {
                     return false;
@@ -99,6 +103,6 @@ public class FileUtil {
     }
 
     public static void main(String[] args) {
-        System.out.println(deleteDir(new File(System.getProperty("user.dir")+"/tmp")));
+        System.out.println(deleteDir(new File(System.getProperty("user.dir") + "/tmp")));
     }
 }

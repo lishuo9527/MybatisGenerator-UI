@@ -120,7 +120,7 @@
                     </div>
                     <div class="col-md-6" >
                       <label>密码</label>
-                      <input type="text" class="form-control" name="password" placeholder="Enter Password">
+                      <input type="password" class="form-control" name="password" placeholder="Enter Password">
                     </div>
                   </div>
                 </div>
@@ -184,7 +184,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 1.0.0
     </div>
-    <strong><a href="http://lishuo.me">Mybatis Generator UI</a>.</strong>
+    <strong><a href="https://github.com/lishuo9527/MybatisGenerator-UI">Mybatis Generator UI</a>.</strong>
   </footer>
 
   <!-- Add the sidebar's background. This div must be placed

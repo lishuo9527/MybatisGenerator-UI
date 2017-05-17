@@ -39,12 +39,19 @@ function gen() {
     $.ajax({
         type: 'post',
         url: '/gen',
-        dataType: 'text',
+        dataType: 'json',
+        timeout: 3000, //超时时间设置，单位毫秒
         data: $('#mbg').serialize(),
         success: function (data) {
-            window.open('result/mbg.zip')
-
+            if (data.code == "00") {
+                window.open('result/mbg.zip')
+            } else if (data.code == "01") {
+                alert("01: 数据库连接异常! ");
+            }
         },
+        error: function (data) {
+            alert("请检查配置信息是否有误!");
+        }
 
     });
 }
