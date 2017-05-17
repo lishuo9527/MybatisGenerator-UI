@@ -23,8 +23,8 @@ git clone https://github.com/lishuo9527/MybatisGenerator-UI.git
 
 
 ```
-cd MybatisGenerator/
-mvn clean package
+cd MybatisGenerator-UI
+mvn clean package -Dmaven.test.skip
 ```
 
 
