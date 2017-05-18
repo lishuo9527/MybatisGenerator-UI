@@ -27,6 +27,12 @@ cd MybatisGenerator-UI
 mvn clean package -Dmaven.test.skip
 ```
 
+*  Change default server port from application.properties file if you want.
+
+```
+### Default server port #########
+server.port=8888
+```
 
 * Run it from the command line with a command like this:
 
@@ -36,6 +42,9 @@ nohup java -server -Xms128m -Xmx128m -jar MybatisGenerator-1.0.0-SNAPSHOT.jar  >
 ```
 
 * you can also run it in Eclipes or IntelliJ IDEA. Just find class `me.lishuo.MybatisGeneratorApplication` and run it.
+
+*  Access server  as `http://localhost:8888`
+
 
 #### TODO
 * Support more databases( Now only support MySQL)
