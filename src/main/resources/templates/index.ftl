@@ -25,7 +25,7 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
-<body class="hold-transition skin-red sidebar-mini">
+<body class="hold-transition skin-red sidebar-mini" onload="readConf()">
 <div class="wrapper">
 
   <header class="main-header">
@@ -65,9 +65,7 @@
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i>Conf 1</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i>Conf 2</a></li>
+          <ul id="menu" class="treeview-menu">
           </ul>
         </li>
       </ul>
@@ -96,7 +94,7 @@
                 <div class="form-group">
                   <div class="col-md-12" >
                       <label>主机名或IP地址 url</label>
-                      <input type="text" class="form-control" name="ip" placeholder="Enter IP">
+                      <input type="text" class="form-control" id="ip" name="ip" placeholder="Enter IP">
                   </div>
                 </div>
 
@@ -104,11 +102,11 @@
                   <div class="column">
                     <div class="col-md-6" >
                       <label>数据库</label>
-                      <input type="text" class="form-control" name="db" placeholder="Enter DB">
+                      <input type="text" class="form-control" id="db" name="db" placeholder="Enter DB">
                     </div>
                     <div class="col-md-6" >
                       <label>端口</label>
-                      <input type="text" class="form-control" name="port" placeholder="Enter Port">
+                      <input type="text" class="form-control" id="port" name="port" placeholder="Enter Port">
                     </div>
                   </div>
                 </div>
@@ -116,11 +114,11 @@
                   <div class="column">
                     <div class="col-md-6" >
                       <label>用户名</label>
-                      <input type="text" class="form-control" name="username" placeholder="Enter UserName">
+                      <input type="text" class="form-control" id="username" name="username" placeholder="Enter UserName">
                     </div>
                     <div class="col-md-6" >
                       <label>密码</label>
-                      <input type="password" class="form-control" name="password" placeholder="Enter Password">
+                      <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
                     </div>
                   </div>
                 </div>
@@ -129,7 +127,7 @@
                   <div class="column">
                     <div class="col-md-12" >
                       <label>生成模型的包名</label>
-                      <input type="text" class="form-control" name="modelpackagename" placeholder="Enter Model PackageName">
+                      <input type="text" class="form-control" id="modelpackagename" name="modelpackagename" placeholder="Enter Model PackageName">
                     </div>
                   </div>
                 </div>
@@ -138,7 +136,7 @@
                   <div class="column">
                     <div class="col-md-12" >
                       <label>生成DAO的包名</label>
-                      <input type="text" class="form-control" name="daopackagename" placeholder="Enter Dao PackageName">
+                      <input type="text" class="form-control" id="daopackagename" name="daopackagename" placeholder="Enter Dao PackageName">
                     </div>
                   </div>
                 </div>
@@ -147,7 +145,7 @@
                   <div class="column">
                     <div class="col-md-12" >
                       <label>生成映射文件的位置</label>
-                      <input type="text" class="form-control" name="mapperpath" placeholder="Enter Mapper Path">
+                      <input type="text" class="form-control" id="mapperpath" name="mapperpath" placeholder="Enter Mapper Path">
                     </div>
                   </div>
                 </div>
@@ -156,11 +154,11 @@
                   <div class="column">
                     <div class="col-md-4" >
                       <label>表名称</label>
-                      <input type="text" class="form-control" name="tablenames" placeholder="Enter test_table">
+                      <input type="text" class="form-control"  name="tablenames" placeholder="Enter test_table">
                     </div>
                     <div class="col-md-4" >
                       <label>模型名称</label>
-                      <input type="text" class="form-control" name="tablemodels" placeholder="Enter TestTable">
+                      <input type="text" class="form-control"  name="tablemodels" placeholder="Enter TestTable">
                     </div>
                     <div class="col-md-4" >
                         <button type="button" class="btn btn-primary" onclick="addTable()" style="margin-top: 25px">添加表</button>
@@ -171,9 +169,29 @@
 
               <div class="box-footer">
                 <button type="button" class="btn btn-primary" onclick="gen()">生成</button>
-                <!-- <button type="submit" class="btn btn-primary">保存配置</button> -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">保存配置</button>
+                  <button type="button" class="btn btn-danger" onclick="clearconf()">清除配置</button>
               </div>
             </form>
+
+                <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">输入配置名称 Conf Name</h4>
+                            </div>
+                            <div class="modal-body">
+                                <input type="text" id="confname" class="form-control"  value="conf_name">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" onclick="saveConf()">Save</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+
           </div>
 
         </div>

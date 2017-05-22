@@ -28,13 +28,21 @@ function rmTable(table) {
 }
 
 function gen() {
-    var inputs = document.getElementsByTagName("input");
-    for (var i = 0; i < inputs.length; i++) {
-        if (inputs[i].value == "" || inputs[i].value == null) {
+    // var inputs = document.getElementsByTagName("input");
+    // for (var i = 0; i < inputs.length; i++) {
+    //     if (inputs[i].value == "" || inputs[i].value == null) {
+    //         alert("信息输入不全");
+    //         return false;
+    //     }
+    // }
+
+    $('input').each(function(i){
+        var text = $(this).val();
+        if(text ==""){
             alert("信息输入不全");
             return false;
         }
-    }
+    });
 
     $.ajax({
         type: 'post',
@@ -54,4 +62,45 @@ function gen() {
         }
 
     });
+}
+
+function saveConf() {
+    var data = JSON.stringify($('#mbg').serialize());
+    var key = $('#confname').val();
+
+    localStorage.setItem(key, data);
+    location.reload();
+}
+
+function readConf() {
+//      <li><a href="#"><i class="fa fa-circle-o"></i>Conf 1</a></li>
+    var storage = window.localStorage;
+    var menu = '';
+    for (var i = 0, len = storage.length; i < len; i++) {
+        var key = storage.key(i);
+        menu += '<li><a href="#" onclick="writeconf(this)"><i class="fa fa-circle-o"></i>' + key + '</a></li>';
+    }
+    $('#menu').append(menu);
+}
+
+function writeconf(ob) {
+    var index = $(ob).index();
+    var key = $(ob).eq(index).text();
+    var value = localStorage.getItem(key);
+    value = value.replace('"', '');
+    var arrys = value.split('&');
+    for (var i = 0, l = arrys.length; i < l; i++) {
+        var tmp = arrys[i].split('=');
+        if (tmp[0] == "tablemodels" || tmp[0] == "tablenames") {
+            continue;
+        }
+        $('#' + tmp[0]).val(tmp[1]);
+    }
+}
+
+function clearconf() {
+
+    localStorage.clear();
+    alert("清除成功!");
+    location.reload();
 }
