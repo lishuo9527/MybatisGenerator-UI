@@ -17,3 +17,4 @@ target/
 .idea/
 .project
 *.iml
+result/
