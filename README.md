@@ -48,8 +48,9 @@ nohup java -server -Xms128m -Xmx128m -jar MybatisGenerator-1.0.0-SNAPSHOT.jar  >
 
 #### TODO
 * Support more databases( Now only support MySQL)
-* Add system configuration
 * Optimize code
+* ~~Add system configuration~~(Done)
+
 
 #### License
 Mybatis Generator UI is released under the [MIT License](https://github.com/lishuo9527/MybatisGenerator-UI/blob/master/LICENSE).
