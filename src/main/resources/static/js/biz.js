@@ -1,18 +1,18 @@
 function addTable() {
-    var table = '<div class="column">'
-        + '<div class="col-md-4" >'
-        + '<label>表名称</label>'
-        + '<input type="text" class="form-control" name="tablenames" placeholder="Enter test_table">'
-        + '</div>'
-        + '<div class="col-md-4" >'
-        + '<label>模型名称</label>'
-        + '<input type="text" class="form-control" name="tablemodels" placeholder="Enter TestTable">'
-        + '</div>'
-        + '<div class="col-md-4" >'
-        + '<button type="button" class="btn btn-primary" onclick="addTable()" style="margin-top: 25px">添加表</button>'
-        + '<button type="button" class="btn btn-danger" onclick="rmTable(this)" style="margin-top: 25px">删除</button>'
-        + '</div>'
-        + '</div>';
+    var table = `<div class="column">
+        <div class="col-md-4" >
+        <label>表名称</label>
+        <input type="text" class="form-control"  name="tablenames" placeholder="Enter test_table">
+        </div>
+        <div class="col-md-4" >
+        <label>模型名称</label>
+        <input type="text" class="form-control"  name="tablemodels" placeholder="Enter TestTable">
+        </div>
+        <div class="col-md-4" >
+        <button type="button" class="btn btn-primary" onclick="addTable()" style="margin-top: 25px">添加表</button>
+        <button type="button" class="btn btn-danger" onclick="rmTable(this)" style="margin-top: 25px">删除</button>
+        </div>
+        </div>`;
 
     $('#tables').append(table);
 }
@@ -36,9 +36,9 @@ function gen() {
     //     }
     // }
 
-    $('input').each(function(i){
+    $('input').each(function (i) {
         var text = $(this).val();
-        if(text ==""){
+        if (text == "") {
             alert("信息输入不全");
             return false;
         }
