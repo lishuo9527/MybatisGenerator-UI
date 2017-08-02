@@ -85,7 +85,7 @@ public class GenService {
                     tableConfiguration.setDeleteByExampleStatementEnabled(false);
                     tableConfiguration.setSelectByExampleStatementEnabled(false);
                     tableConfiguration.setUpdateByExampleStatementEnabled(false);
-                    tableConfiguration.getProperties().setProperty("useActualColumnNames", "true");
+                    tableConfiguration.getProperties().setProperty("useActualColumnNames", "false");
                     tableConfigurations.add(tableConfiguration);
                 }
             }
