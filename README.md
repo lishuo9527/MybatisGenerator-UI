@@ -1,4 +1,6 @@
 # MybatisGenerator-UI
+
+[![Join the chat at https://gitter.im/MybatisGenerator-UI/Lobby](https://badges.gitter.im/MybatisGenerator-UI/Lobby.svg)](https://gitter.im/MybatisGenerator-UI/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Travis](https://img.shields.io/travis/rust-lang/rust.svg)]()[![apm](https://img.shields.io/apm/l/vim-mode.svg)]()
 
 Mybatis Generator UI is based on [Mybatis Gennerator](http://www.mybatis.org/generator/). It provides a web tool to generate code.
